@@ -262,6 +262,14 @@ if [ "$whohasbeensudo" ]; then
   echo -e "\n"
 fi
 
+#who has sudoed in the past
+#mp
+whenhasbeensudo=`grep sudo /var/log/auth.log 2>/dev/null`
+if [ "$whenhasbeensudo" ]; then
+  echo -e "\e[00;31m[-] Accounts that have recently used sudo:\e[00m\n$whohasbeensudo" 
+  echo -e "\n"
+fi
+
 #checks to see if roots home directory is accessible
 rthmdir=`ls -ahl /root/ 2>/dev/null`
 if [ "$rthmdir" ]; then
